@@ -1,5 +1,7 @@
 # Capacitación en desarrollo Web para Llanogas.
 
+## Link de Trello: 
+https://trello.com/b/ctSGZXq2/capacitacion-llanogas-js
 
 ## Temario del curso:
 
