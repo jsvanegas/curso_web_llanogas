@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejemplos de Prototipos en JS</title>
+
+</head>
+<body>
+	
+
+	<script type="text/javascript">
+		
+		var Heroe = function(nombre, poderes){
+			//declaración - asignación
+			this.nombre = nombre;
+			this.poderes = poderes;
+		};
+
+		Heroe.prototype.saludar = function(){
+			console.log('Hola mi nombre es ', this.nombre);
+		};
+
+		var superman = new Heroe('Superman', ['volar', 'rayos x', 'fuerza']);		
+		superman.saludar();
+
+
+
+
+
+
+	</script>
+
+</body>
+</html>

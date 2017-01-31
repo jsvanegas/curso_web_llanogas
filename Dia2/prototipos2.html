@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+
+	<script>
+		
+		var Factura = function(numero, valor){
+			this.numero = numero;
+			this.valor = valor;
+		};
+
+		Factura.prototype.obtenerIVA = function(){
+			return (this.valor * 1.19);
+		};
+
+		var factura1 = new Factura('1234ABCD', 40000);
+		var factura2 = new Factura('1234ABCE', 150000);
+
+		console.log( factura1.obtenerIVA(), ' ', factura2.obtenerIVA() );
+
+
+		var yomismo = null;
+		var batman = {
+			
+			nombre:'Bruce Wayne',
+			fnc1:function(){
+				
+				yomismo = this;
+				
+				console.log('this: 1', this.nombre);
+				function fnc2(){
+					var nombre = 'Otro nombre';
+					console.log('this: 2', yomismo.nombre, 'otro nombre', nombre);	
+					function fnc3(){
+						console.log('this 3', yomismo.nombre);
+					}
+					fnc3();
+				}
+				fnc2();
+			}
+		};
+
+		batman.fnc1();
+
+
+
+		String.prototype.capitalizar = function(){
+			var minus = this.toLowerCase();
+			primerCaracter = minus.charAt(0).toUpperCase();
+			return primerCaracter+minus.substring(1, minus.length);
+		}
+
+		String.prototype.toString = function(){
+			return 'Prueba '+this;
+		}
+
+
+
+	</script>
+</body>
+</html>
