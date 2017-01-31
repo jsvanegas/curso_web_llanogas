@@ -1,0 +1,46 @@
+body{
+	font-size: 20px;
+	font-family: helvetica, arial, sans-serif;
+}
+
+tbody tr{    /*   */
+	background-color:#F90;
+	height: 50px;	
+}
+
+tbody tr{    /*   */
+	background-color:#DEDEDE;
+	height: 30px;	
+}
+
+tbody tr:nth-child(2n){
+	background-color: #A9A9A9;
+}
+
+#trCabecera{
+	background-color:#666;
+	color:#FFF;
+}
+
+.tr-azul{
+	background-color: #07F;
+}
+
+.tr-azul{
+	background-color: #999;
+}
+
+
+#section-parrafos p{
+	color:#09F;
+}
+
+#section-parrafos div:first-child p:first-child{
+	color:#0F9;
+	font-size: 25px;
+}
+
+#section-parrafos div:last-child p:last-child{
+	color:#F00;
+	font-size: 5em;
+}
