@@ -47,7 +47,7 @@
 
 		var tbl = null;
 		__cnn.ajax({
-			url:'http://localhost/curso/symfony/web/app_dev.php/achagua/consultar',
+			url:'../achagua/consultar',
 			completado:function(data){
 				new Apptable('#tablaBasica', config, data.datos);
 			}

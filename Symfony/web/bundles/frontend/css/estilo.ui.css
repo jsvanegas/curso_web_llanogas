@@ -50,6 +50,9 @@ div.campo{
 
 
 div.campo input[type="text"],
+div.campo input[type="password"],
+div.campo input[type="number"],
+div.campo input[type="email"],
 div.campo select,
 div.campoCorto select{
     width: 96%;
