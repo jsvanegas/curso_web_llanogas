@@ -1,0 +1,16 @@
+frontend:
+    resource: "@FrontendBundle/Resources/config/routing.yml"
+    prefix:   /frontend
+
+sesiones:
+    resource: "@SesionesBundle/Resources/config/routing.yml"
+    prefix:   /sesiones
+
+ejercicios:
+    resource: "@EjerciciosBundle/Resources/config/routing.yml"
+    prefix:   /ejercicios
+
+achagua:
+    resource: "@AchaguaBundle/Resources/config/routing.yml"
+    prefix:   /achagua
+    

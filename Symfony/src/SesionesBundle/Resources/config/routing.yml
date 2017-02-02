@@ -1,0 +1,13 @@
+sesiones_homepage:
+    path:     /hello
+    defaults: { _controller: SesionesBundle:sesiones:index }
+    
+    
+sesiones_ajax:
+    path:     /ajax
+    defaults: { _controller: SesionesBundle:ajax:index }
+    
+    
+sesiones_ajax_peticion:
+    path:     /ajax/peticion
+    defaults: { _controller: SesionesBundle:Ajax:peticionAjax }

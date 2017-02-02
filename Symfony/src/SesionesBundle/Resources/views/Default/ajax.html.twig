@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block contenido %}
+
+    <label for="txtNombre">Nombre</label>
+    <input type="text" id="txtNombre"/>
+    <label for="txtCorreo">Correo</label>
+    <input type="text" id="txtCorreo"/>
+    <label for="txtClave">Clave</label>
+    <input type="text" id="txtClave"/>
+    <input type="button" id="btnGuardar" value="Guardar"/>
+    
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/sesiones/js/registroajax.js')}}"></script>
+{% endblock %}

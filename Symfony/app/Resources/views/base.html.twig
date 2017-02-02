@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/app.css') }}" />
+        <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-3.1.1.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/app/js/app.js')}}"></script>
+        {% block stylesheets %}{% endblock %}
+
+</head>
+<body>
+    <div id="contenedor">
+
+        <div id="cabecera">
+            <h1>{% block titulo %}{% endblock %}</h1>
+        </div>
+        <div id="menu">
+        </div>
+        <div id="contenido">
+                    {% block contenido %}{% endblock %} <!--Modifca contenido -->
+        </div>
+        <div id="piePagina">
+        </div>
+    </div>
+
+    {% block javascripts %}{% endblock %} <!--Los JavaScrip se deja siempre al final para optimizar busqueda-->
+</body>
+</html>
+
+
+

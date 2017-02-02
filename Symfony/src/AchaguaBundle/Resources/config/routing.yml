@@ -1,0 +1,19 @@
+achagua_homepage:
+    path:     /index
+    defaults: { _controller: AchaguaBundle:Default:index }
+    
+    
+eliminar_homepage:
+    path:     /eliminar
+    defaults: { _controller: AchaguaBundle:Default:eliminar }
+    
+   
+modificar_homepage:
+    path:     /modificar
+    defaults: { _controller: AchaguaBundle:Default:modificar }
+
+consultar_homepage:
+    path:     /consultar
+    defaults: { _controller: AchaguaBundle:Default:consultar }
+    
+    

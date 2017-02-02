@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Ejercicios
+{% endblock %}    
+
+{% block contenido %}
+    
+    {% set numero = 'Jeison, Cardenas, Roa' %}
+    {% for digito in numero|split(',') %}
+        {{digito}} <br>
+    
+    {% endfor %}
+{% endblock %}
+

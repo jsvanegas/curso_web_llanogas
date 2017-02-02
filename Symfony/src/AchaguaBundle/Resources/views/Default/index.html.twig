@@ -1,0 +1,58 @@
+{% extends  "base.html.twig" %}
+{% block contenido %}
+    <table border="1"> 
+
+        {% for info in usuarios %}
+            <tr>
+                <td data-nombre='lbnombre'><input type='text'value='{{info['nombre']}}'/></td>
+                <td data-nombre='lbcorreo'><input type='text'value='{{info['correo']}}'/></td>
+                <td data-nombre='lbclave'><input type='text'value='{{info['clave']}}'/></td>
+                <td><input data-id="{{info['id_usuario']}}" data-version="{{ info['registro_version']}}" type="button" value="Modificar" id="btnModificar"/></td>
+                <td><input data-id="{{info['id_usuario']}}"  type="button" value="Eliminar"/></td>
+                <td><input type="button" value="Agregar"/></td>
+            </tr>    
+
+        {% endfor%}
+
+    </table>   
+        <script type='text/javascript'>
+            $("table tr input[value='Eliminar']").on('click', function(){
+               console.log('click');
+                var id = $(this).attr('data-id');
+                var version = $(this).attr('data-version');
+                var fila = $(this).parent().parent();
+                var nombre = $(fila).find('td[data-nombre="lbnombre"] imput').val();
+                var correo = $(fila).find('td[data-nombre="lbcorreo"] imput').val();
+                var obj = {};
+                obj.IdUsuario = id;
+                obj.version = version;
+                ajax('eliminar', obj, function (data){
+                    alert(data.mensaje);
+                    location.reload();
+                });
+            });
+            
+            $("table tr input[value='Modificar']").on('click', function(){
+               console.log('click');
+                var id = $(this).attr('data-id');
+                var version = $(this).attr('data-version');
+                var fila = $(this).parent().parent();
+                var nombre = $(fila).find('td[data-nombre="lbnombre"] input').val();
+                var correo = $(fila).find('td[data-nombre="lbcorreo"] input').val();
+                var clave = $(fila).find('td[data-nombre="lbclave"] input').val();
+                var obj = {};
+                obj.idUsuario = id;
+                obj.version = version;
+                obj.nombre = nombre;
+                obj.correo = correo;
+                obj.clave = clave;
+                ajax('modificar', obj, function (data){
+                    alert(data.mensaje);
+                   // location.reload();
+                });
+            });
+            
+        </script>
+
+{% endblock %}
+
