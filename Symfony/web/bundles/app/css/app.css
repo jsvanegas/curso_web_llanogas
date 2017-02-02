@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24/01/2017, 03:04:56 PM
+    Author     : jlcardenas
+*/
+
+#cabecera{ 
+    height: 150px;
+    padding:10px;   /*margenes*/ 
+    border-bottom: solid 1px #08C;
+}
+#menu{
+    float: left; /*parte izquierda de la pantalla*/
+    width: 15%; /*ancho */
+    min-height: 450px; /*minimo tañano, puede ir creciendo*/
+}
+#contenido{
+    float: right;
+    width: 80%;
+    min-height: 450px;
+    border-left: solid 1px#333;
+}
+#piePagina{
+    height: 80px;
+    border-top: solid 1px #333;  
+    clear:both;
+}
+
+
+
+
