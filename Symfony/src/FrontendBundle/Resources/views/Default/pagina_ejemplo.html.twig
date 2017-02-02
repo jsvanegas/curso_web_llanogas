@@ -1,0 +1,35 @@
+{% extends  "base.html.twig" %}
+
+
+
+{% block title %}Página de ejemplo{% endblock %}
+
+
+{% block stylesheets %}
+	<!-- El bloque stylesheets se ubica al final de los estilos del archivo base, para agregar estilos de página-->
+
+{% endblock %}
+
+
+{% block titulo %}
+	<!-- este bloque determina el subtítulo de la página -->
+	Página en Blanco
+{% endblock %}
+
+
+{% block body %}
+	<!-- En este bloque va todo el contenido de la página, todos los formularios -->
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+	<!-- El bloque javascripts al final, permite agregar nuevos scripts que se ejecutan cuando se termina de correr la página -->
+	<!-- Ejemplo de cómo se debe invocar un script -->
+	<!--
+		<script type="text/javascript" src="{{asset('bundles/NOMBRE_BUNDLE/UBICACION_ARCHIVO_JS')}}"></script>
+	-->
+	
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends  "base.html.twig" %}
+
+
+
+{% block title %}Index{% endblock %}
+
+
+{% block stylesheets %}
+	
+
+{% endblock %}
+
+
+{% block titulo %}
+	
+
+{% endblock %}
+
+
+{% block body %}
+	
+	<table id="tablaBasica" class="tabla"></table>
+
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+		
+	<script>
+
+		/******EJEMPLO DE TABLA BÁSICA******/
+		var formatoTabla = {
+			thead:[
+				{id:'thNombre', text:'Nombre', refer:'nombre', type:'text'},
+				{id:'thCorreo', text:'Correo', refer:'correo', type:'text'}
+			]
+		};
+
+		var tbl = null;
+		__cnn.ajax({
+			url:'http://localhost/curso/symfony/web/app_dev.php/achagua/consultar',
+			completado:function(data){
+				fillTable('tablaBasica', 'formatoTabla', data.datos, 'Tabla Básica');
+			}
+		});
+		/******EJEMPLO DE TABLA BÁSICA******/
+
+
+	</script>
+	
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends  "base.html.twig" %}
+
+
+
+{% block title %}Index{% endblock %}
+
+
+{% block stylesheets %}
+	
+
+{% endblock %}
+
+
+{% block titulo %}
+	
+
+{% endblock %}
+
+
+{% block body %}
+	
+	<table id="tablaBasica" class="tabla"></table>
+
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+		
+	<script>
+
+		/******EJEMPLO DE TABLA BÁSICA******/
+		var columnas = [
+			{text:'Nombre', headers:'thNombre', data:'nombre'},
+			{text:'Correo', headers:'thCorreo', data:'correo'}
+		];
+
+		var config = {
+			title: 'Usuarios',
+            pagination: true,
+            columns: columnas,
+            linesPageRange: [10, 20, 30],
+            lg: lenguajeTabla		
+        };
+
+		var tbl = null;
+		__cnn.ajax({
+			url:'http://localhost/curso/symfony/web/app_dev.php/achagua/consultar',
+			completado:function(data){
+				new Apptable('#tablaBasica', config, data.datos);
+			}
+		});
+		/******EJEMPLO DE TABLA BÁSICA******/
+
+
+	</script>
+	
+{% endblock %}

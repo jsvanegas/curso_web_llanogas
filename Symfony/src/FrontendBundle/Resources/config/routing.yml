@@ -1,3 +1,15 @@
+frontend_ejemplo_blanco:
+    path:     /ejemplo_blanco
+    defaults: { _controller: FrontendBundle:Default:ejemploBlanco }
+
 frontend_homepage:
     path:     /index
     defaults: { _controller: FrontendBundle:Default:index }
+
+frontend_filltable:
+    path:     /filltable
+    defaults: { _controller: FrontendBundle:Default:filltable }
+
+frontend_apptable:
+    path:     /apptable
+    defaults: { _controller: FrontendBundle:Default:apptable }

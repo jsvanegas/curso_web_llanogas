@@ -4,27 +4,145 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/app.css') }}" />
-        <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-3.1.1.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/app/js/app.js')}}"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/estilo.layout.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/estilo.ui.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/Apptable.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/override_apptable.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/font-awesome.min.css')}}" />
         {% block stylesheets %}{% endblock %}
+        
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/app.prototypes.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/jquery-3.1.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/jquery.plugins.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/jquery-ui-1.10.4.custom.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/ui/jquery.ui.core.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/ui/jquery.ui.widget.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/ui/jquery.ui.datepicker.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/ui/jquery.datetimepicker.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/maskedinput.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/mustache.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/ui/jquery.ui.tabs.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/ui/jquery.ui.autocomplete.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/EventTarget.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/Apptable.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/Appload.js')}}"></script>
+
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/app.funciones.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/app.global.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/app.ui.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/app.tabla.js')}}"></script>
+        <script type="text/javascript">
+
+            var esAppload = {
+                versionError: 'Appload.js no es compatible con esta versión del navegador.',
+                labelInput: 'Seleccionar archivos',
+                fileTypesErrorDeclaration: 'Los tipos de archivos deben ser declarados de tipo String o Array. Definición de tipo indefinida',
+                removeAllFilesBtn: 'Remover todos los archivos',
+                uploadAllFilesBtn: 'Subir todos los archivos',
+                singleUploadBtn: 'Subir este archivo',
+                singleDiscardBtn: 'Descartar este archivo',
+                singleDownloadBtn: 'Descargar este archivo',
+                singleDeleteBtn: 'Borrar este archivo del servidor',
+                fileNotExists: 'El archivo seleccionado no existe o está corrupto',
+                notEspecifiedURL: 'Debe especificar una URL',
+                errorUploadingFile: 'Ocurrió un problema al subir los archivos',
+                uploading: 'Cargando...',
+                fileTypeError: 'El archivo no se pudo subir, error de tipo, ',
+                mustSelectFile: 'Debe seleccionar al menos un archivo',
+                uploadComplete: 'Los archivos se han subido correctamente',
+                filesNotLoaded: 'Hay <b>#</b> archivos que no se pueden cargar.<br />',
+                allowedExtensions: 'Solo están permitidos archivos con extensión <b>#</b>.<br />',
+                fileSizeExceeded: 'Los archivos no pueden exceder los <b>#Kb.</b><br>',
+                summaryFileErrors: '<br>Estos son los archivos con errores:'
+            };
+
+            var lenguajeTabla = {//lenguaje
+                linesPerPage: 'Líneas por página:',
+                totalItems: 'Cantidad de Registros: #',
+                currentPage: 'Página _# de #_ ',
+                seachInputPlaceHolder: 'Buscar y presionar Enter',
+                noFilteredDataMessage: 'No se encontraron resultados'
+            };
+
+            var __app = new App();
+            var __cnn = new Cnn();
+            var __dom = new Dom();
+            window.onerror = __app.controlarErrorGeneral;
+            window.onresize = __app.ajustarAnchoMenu;
+            window.onscroll = __app.ajustarAnchoMenu;
+        </script>
+
+
+        
 
 </head>
 <body>
-    <div id="contenedor">
 
-        <div id="cabecera">
-            <h1>{% block titulo %}{% endblock %}</h1>
-        </div>
-        <div id="menu">
-        </div>
-        <div id="contenido">
-                    {% block contenido %}{% endblock %} <!--Modifca contenido -->
-        </div>
-        <div id="piePagina">
-        </div>
+    <div id="divDialogoCargador"></div>
+    <div id="divCortinaModal"></div>
+
+    <div id="divCargador" tabindex="0">
+        <img src="{{asset('bundles/frontend/img/cargando2.gif')}}" />
+        <span>Cargando...</span>
+        <input type="text" id="txtTrampaFoco" style="position: absolute; top:-10000px; opacity: 0;">
     </div>
 
+    <div id="divDialogo">
+    </div>
+
+    <div id="contenedor">
+        <div id="divTitulo">
+            <h1 id="h1_base_titulo_app">Ejemplos Symfony y Frontend</h1>
+        </div>
+        <div id="divAppContainer" style="position:relative;">
+
+            <div id="menu">
+                <div  style="padding: 20px 10px;">
+                    <a href="index">Página de Ejemplo con AJAX</a>
+                    <a href="ejemplo_blanco">Página de Ejemplo en Blanco</a>    
+                    <a href="filltable">Ejemplo Filltable</a>    
+                    <a href="apptable">Ejemplo Apptable</a>    
+                </div>
+            </div>
+
+
+            <div id="divGeneral">
+                <div id="divBarraOcultarMenu">
+                    <button id="btnOcultarMenu" data-visible="true">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                </div>
+
+                <h2>{% block titulo %}{% endblock %}</h2>
+                <div id="divFormulario">{% block body %}{% endblock %}</div>
+            </div>
+            <hr class="limpiar" />
+        </div>
+        <hr class="limpiar" />
+        <div id="piePagina">
+            <p>Curso Symfony y Frontend - Appfuture 2017</p>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        (function ($) {
+            $('#btnOcultarMenu').on('click', function () {
+                $(this).find('.fa').toggleClass('fa-chevron-left').toggleClass('fa-chevron-right');
+                if ($(this).attr('data-visible') === 'true') {
+                    $(this).attr('data-visible', false);
+                    $('#menu').hide();
+                    __app.ajustarAnchoMenu();
+                    return;
+                }
+                $(this).attr('data-visible', true);
+                $('#menu').show();
+                __app.ajustarAnchoMenu();
+            });
+            __app.ajustarAnchoMenu();
+        })(jQuery);
+    </script>
     {% block javascripts %}{% endblock %} <!--Los JavaScrip se deja siempre al final para optimizar busqueda-->
 </body>
 </html>
