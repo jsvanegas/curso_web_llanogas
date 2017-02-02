@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Acordeon jQuery</title>
+
+	<style>
+		
+		#acordeon > div{
+			display: none;
+		}
+
+		#acordeon > h2{
+			font-family: verdana;
+			background-color: #333;
+			color:#FFF;
+			margin: 0px;
+			font-size: 16px;
+			padding: 7px 10px 5px 15px;
+			border-bottom: solid 1px #999;
+		}
+		
+			#acordeon > h2:hover{
+				cursor: pointer;
+				color: #FF0;
+			}
+
+			#acordeon > h2:first-child + div{
+				display: block;
+			}
+
+
+	</style>
+
+	<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	
+	<div id="acordeon">
+		<h2>Título 1</h2>
+		<div>Texto de prueba Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<div>Div de prueba</div>
+		</div>
+
+		<h2>Título 2</h2>
+		<div>Texto de prueba Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+		
+		<h2>Título 3</h2>
+		<div>Texto de prueba Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+	</div>
+	
+	<script>
+		
+	/*
+		var btn = document.getElementById('btnGuardar');
+		btn.addEventListener('click', fx);
+		btn.click = function(){}
+	*/
+
+
+
+		var acordeon = $('#acordeon');
+		var titulos = acordeon.find('h2');
+
+		//titulos.bind('click', fx);   jquery 1.5, 1.6, 1.7
+		//titulos.click(fx);  //2.9
+		//titulos.on('evento', fx) //1.8 + 
+
+		titulos.on('click', function(){
+			var titulo = $(this); //el objeto sobre el cual se presionó clic
+			if(titulo.next().is(':visible')){
+				titulo.next().slideUp('fast');
+				return;
+			}
+			titulo.siblings('div').slideUp('slow');
+			titulo.next().slideDown('fast');
+		});
+
+
+
+	</script>
+
+
+</body>
+</html>

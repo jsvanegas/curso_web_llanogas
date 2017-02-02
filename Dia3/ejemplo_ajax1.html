@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+	
+	<div>
+		<p id="informacion"></p>
+	</div>
+	
+	
+
+	<button id="btnCargarDatos">Cargar Datos</button>
+
+	<script>
+		
+	/*	
+	$('#btnCargarDatos').on('click', function(){
+		$.get('texto.txt', function(data){
+			$('#informacion').text(data+ $('#informacion').text());
+		});
+	});
+	*/
+
+	$('#btnCargarDatos').on('click', onCargarClick);
+
+	function onCargarClick(){
+		$.get('texto.txt', onSuccess);
+	}
+
+	function onSuccess(data){
+		$('#informacion').text(data+ $('#informacion').text());
+	}
+
+
+	</script>
+
+
+</body>
+</html>

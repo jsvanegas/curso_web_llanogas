@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejemplo jQuery 1</title>
+	<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	
+	<div id="cabecera"></div>
+	
+	<div>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+
+
+	</div>
+		
+
+	<script>
+		
+		var h1 = null;
+		h1 = $('<h1>').text('Título desde jQuery')
+					  .css({'font-family':'verdana', 'text-decoration':'underline'}) 
+					  .hide() 
+					  .fadeIn(7000) 
+					  .appendTo('#cabecera');
+
+	    /*
+		var h2 = document.getElementById('titulo2');
+		var h3 = $('#titulo3');
+		console.log(h2, ' ', h3);
+		*/	
+
+		//jQuery.each(function(indice, elemento))
+		//Array.forEach(function(elemento, indice))
+
+		/*
+		$('p').each(function(indice, parrafo){
+			parrafo = $(parrafo);
+			parrafo.text('Prueba '+indice);
+			parrafo.css('color', '#F90');
+			//parrafo.innerText = 'Prueba '+indice;
+		});
+		*/
+
+
+		$('p').text('Prueba').css('color', '#F90');
+
+
+	</script>
+
+</body>
+</html>
+
+
+
+
+
