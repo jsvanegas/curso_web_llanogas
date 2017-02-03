@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejemplo de Local y Session Storage</title>
+</head>
+<body>
+
+	<a href="pruebasesion.html">Prueba de sesión</a>
+	<div>
+		<label for="txtLocal">Local Storage:</label>
+		<input type="text" id="txtLocal">
+	</div>
+	<div>
+		<label for="txtSession">Session Storage:</label>
+		<input type="text" id="txtSession">
+	</div>
+	<button id="btnGuardar">Guardar</button>
+	
+	<script>
+		
+		var btnGuardar = document.getElementById('btnGuardar');
+		var txtLocal = document.getElementById('txtLocal');
+		var txtSession = document.getElementById('txtSession');
+
+		txtLocal.value = localStorage.getItem('local');
+		txtSession.value = sessionStorage.getItem('sesion');
+
+
+		btnGuardar.addEventListener('click', function(){
+			var obj = JSON.stringify({nombre:'Juan', apellido:'Vanegas'});
+			localStorage.setItem('local', obj);
+			sessionStorage.setItem('sesion', txtSession.value);
+		});
+
+
+		/**
+		 * Función de ejemplo
+		 *
+		 * @param      {number}  a       El número 1 de .....
+		 * @param      {number}  b       El número de .....
+		 * @param      {number}  c       El número de .....
+		 * @return     {number}  La función retorna un .....
+		 */
+		function funcionPrueba(a, b, c){
+			return a+b+c;
+		}
+
+
+	</script>
+
+</body>
+</html>

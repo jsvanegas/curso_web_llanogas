@@ -17,3 +17,7 @@ frontend_apptable:
 frontend_mustache:
     path:     /mustache
     defaults: { _controller: FrontendBundle:Default:mustache }
+
+frontend_mustacheej:
+    path:     /mustacheej
+    defaults: { _controller: FrontendBundle:Default:mustacheej }

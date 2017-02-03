@@ -1,0 +1,10 @@
+{{#usuarios}}
+<div>
+	<h3>Nombre: {{nombre}} 
+		{{#edad}} - Edad: {{edad}} {{/edad}} 
+		{{^edad}} Edad no registrada {{/edad}} 
+	</h3>
+	<h4>Nacionalidad {{nacionalidad}}</h4>
+	<h4>Profesion: {{profesion}}</h4>	
+</div>
+{{/usuarios}}

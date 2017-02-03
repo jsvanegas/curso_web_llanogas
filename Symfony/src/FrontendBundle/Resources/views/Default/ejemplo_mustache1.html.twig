@@ -1,0 +1,65 @@
+{% extends  "base.html.twig" %}
+
+{% block title %}Mustache {% endblock %}
+
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block titulo %}Mustache{% endblock %}
+
+
+{% block body %}
+	
+	
+	<div id="contenido"></div>
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+	
+	<script>
+		
+		var usuarios = [
+			{
+				edad:45,
+				nombre:'Daniel Rodriguez',
+				nacionalidad:'Colombia',
+				profesion:'Ingeniero'
+			},
+			{
+				edad:45,
+				nombre:'Daniel Rodriguez',
+				nacionalidad:'Colombia',
+				profesion:'Ingeniero'
+			},
+			{
+				nombre:'Daniel Rodriguez',
+				nacionalidad:'Colombia',
+				profesion:'Ingeniero'
+			}
+		];
+
+		$.get(" {{asset('bundles/frontend/templates/tpl_usuario.html')}} ", function(data){
+			var template = data;
+			var resultado = Mustache.render(template, {usuarios:usuarios});
+			document.getElementById('contenido').innerHTML = resultado;
+		});
+
+
+
+		
+
+
+
+	</script>
+	
+{% endblock %}
+
+
+

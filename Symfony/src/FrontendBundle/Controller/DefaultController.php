@@ -27,4 +27,8 @@ class DefaultController extends Controller
     public function mustacheAction(){
         return $this->render('FrontendBundle:Default:mustache.html.twig');  
     }
+
+    public function mustacheejAction(){
+        return $this->render('FrontendBundle:Default:ejemplo_mustache1.html.twig');  
+    }
 }
