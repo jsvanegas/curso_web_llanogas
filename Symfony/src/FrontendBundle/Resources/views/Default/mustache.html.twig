@@ -1,0 +1,108 @@
+{% extends  "base.html.twig" %}
+
+{% block title %}Ejemplo de Uso de Mustache{% endblock %}
+
+{% block stylesheets %}
+	
+	<style>
+		
+		#txtBuscar{
+			width: 300px;
+		}
+
+		#lista_usuarios{
+			border:solid 1px #AAA;
+			width: 300px;
+			margin-top: 15px;
+		}
+
+		.div-usuario{
+			padding: 10px 7px;
+			height: 35px;
+			border-bottom: solid 1px #333;
+			border-top: solid 1px #AAA;
+		}	
+
+			.div-usuario .nombre-usuario{
+				font-size: 17px;
+			}
+
+			.div-usuario .correo-usuario{
+				font-size: 13px;
+				margin-top: 4px;
+			}
+	</style>
+	
+
+{% endblock %}
+
+
+{% block titulo %}Ejemplo de Mustache{% endblock %}
+
+
+{% block body %}
+	
+	<div>
+		<div>
+			<input type="text" id="txtBuscar" placeholder="Buscar...">
+			<p id="mensaje_usuarios"></p>
+		</div>
+
+		<div id="lista_usuarios"></div>	
+	</div>
+	
+
+{% endblock %}
+
+
+{% block javascripts %}
+	
+	<script>
+		//Ejemplo de función anónima autoejecutada
+		(function(){
+
+			var txtBuscar = $('#txtBuscar').on('keyup', function(e){
+				if (e.keyCode === 13 || $(this).val().length===0) { //cuando se presiona enter
+					cargarUsuarios();
+				}
+			});
+
+
+			var template = null;
+
+			function cargarTemplate(){
+				//el teplate de Mustache se debe cargar por medio de AJAX
+				//porque de lo contrario tiene errores de compatibilidad con
+				//los { { } } que usa TWIG
+				$.get("{{ asset('bundles/frontend/templates/tpl_usuarios.html') }}", function(data){
+					template = data;
+					cargarUsuarios();
+				})
+			}
+
+
+
+			function cargarUsuarios(){
+				__cnn.ajax({
+					'url':'../achagua/consultar',
+					'data':{ 'criterio' : txtBuscar.val().length>0 ? txtBuscar.val() : undefined },
+					'completado':cargarListaUsuarios
+				})
+			}
+
+			function cargarListaUsuarios(data){
+				if (data.codigo !== 1) {
+					$('#mensaje_usuarios').text('No se encontraron usuarios');
+					return;
+				}
+				var lista_usuarios = document.getElementById('lista_usuarios');
+				lista_usuarios.innerHTML = Mustache.render(template, {usuarios:data.datos});
+			}
+
+
+			cargarTemplate();
+
+		})();		
+	</script>
+	
+{% endblock %}
