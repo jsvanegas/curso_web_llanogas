@@ -19,7 +19,14 @@
 
 {% block body %}
 	
-	<table id="tablaBasica" class="tabla"></table>
+	<div>
+		<table id="tablaBasica" class="tabla"></table>
+	</div>
+
+	<div>
+		<table id="tablaConBotones" class="tabla"></table>
+	</div>
+	
 
 
 {% endblock %}
@@ -30,26 +37,63 @@
 {% block javascripts %}
 		
 	<script>
+		var datosUsuarios = null;
+		__cnn.ajax({
+			url:'../achagua/consultar',
+			completado:function(data){
+				datosUsuarios = data.datos;
+				iniciarTablas();
+			}
+		});
 
-		/******EJEMPLO DE TABLA BÁSICA******/
-		var formatoTabla = {
+
+
+
+
+		function iniciarTablas(){
+			//Ejemplo de tabla básica.
+			fillTable('tablaBasica', formatoTabla1, datosUsuarios, 'Tabla Básica');
+			var tablaConBotones = fillTable('tablaConBotones', formatoTabla2, datosUsuarios, 'Tabla con botones');
+			asignarEventosTablaConBotones(tablaConBotones);
+		}
+
+
+		/******Formato de tabla 1******/
+		var formatoTabla1 = {
 			thead:[
-				{id:'thNombre', text:'Nombre', refer:'nombre', type:'input', valueField:'id_usuario'},
+				{id:'thNombre', text:'Nombre', refer:'nombre', type:'text', valueField:'id_usuario'},
+				{id:'thCorreo', text:'Correo', refer:'correo', type:'text'}
+			]
+		};
+		/******Formato de tabla 1******/
+
+		/******Formato de tabla 2******/
+		var formatoTabla2 = {
+			thead:[
+				{id:'thNombre', text:'Nombre', refer:'nombre', type:'text', valueField:'id_usuario'},
 				{id:'thCorreo', text:'Correo', refer:'correo', type:'text'},
 				{id:'thClave', text:'Contraseña', refer:'clave', type:'text'},
 				{id:'thAgregar', text:'Agregar', refer:'id_usuario', type:'button'},
 				{id:'thRemover', text:'Remover', refer:'id_usuario', type:'button'},
 			]
 		};
+		/******Formato de tabla 2******/
 
-		var tbl = null;
-		__cnn.ajax({
-			url:'../achagua/consultar',
-			completado:function(data){
-				fillTable('tablaBasica', 'formatoTabla', data.datos, 'Tabla Básica');
-			}
-		});
-		/******EJEMPLO DE TABLA BÁSICA******/
+
+
+		function asignarEventosTablaConBotones(tabla){
+			//selector: busca en la tabla, en el tbody, luego busca en las filas y busca el td que tiene 
+			//la cabecera thAgregar, en ese td busca el botón con la clase tblBtn
+			tabla.find('tbody tr td[header="thAgregar"] .tblBtn').on('click', function(){
+				var id = $(this).attr('data-id');
+				__dom.lanzarAlerta('Presionó clic sobre el objeto con id: '+id, 'Evento Clic del botón Agregar');
+			});
+
+			tabla.find('tbody tr td[header="thRemover"] .tblBtn').on('click', function(){
+				var id = $(this).attr('data-id');
+				__dom.lanzarAlerta('Presionó clic sobre el objeto con id: '+id, 'Evento Clic del botón Eliminar');
+			});
+		}
 
 
 	</script>

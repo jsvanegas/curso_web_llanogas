@@ -64,32 +64,39 @@
 			<button class="btnSimple" id="btnAgregar"> <i class="fa fa-plus"></i> Agregar Usuario</button>		
 		</div>
 		<div id="formulario_usuario">			
-			<div class="campo">
-                <label for="txtNombre">Nombre:</label>
-                <input type="text" id="txtNombre" placeholder="Nombre" />
-            </div>
-            <div class="campo">
-                <label for="txtCorreo">Correo:</label>
-                <input type="text" id="txtCorreo" placeholder="usuario@dominio.com" />
-            </div>
-		</div>
-		<div>
-			<div class="campo">
-                <label for="txtClave">Clave:</label>
-                <input type="password" id="txtClave" placeholder="****" />
-            </div>
+			<div>
+				<div class="campo">
+	                <label for="txtNombre">Nombre:</label>
+	                <input type="text" id="txtNombre" placeholder="Nombre" />
+	            </div>
+	            <div class="campo">
+	                <label for="txtCorreo">Correo:</label>
+	                <input type="text" id="txtCorreo" placeholder="usuario@dominio.com" />
+	            </div>
+			</div>
+			<div>
+				<div class="campo">
+	                <label for="txtClave">Clave:</label>
+	                <input type="password" id="txtClave" placeholder="****" />
+	            </div>
 
-            <div class="campo">
-                <label for="txtClave2">Verificar Clave:</label>
-                <input type="password" id="txtClave2" placeholder="****" />
-            </div>
+	            <div class="campo">
+	                <label for="txtClave2">Verificar Clave:</label>
+	                <input type="password" id="txtClave2" placeholder="****" />
+	            </div>
+			</div>
+			<div>
+				<button id="btnGuardar" class="btnSimple"> <i class="fa fa-save"></i> Guardar</button>
+				<button id="btnEliminar" class="btnSimple"> <i class="fa fa-trash"></i> Eliminar</button>
+			</div>
 		</div>
 
-		<div>
-			<button id="btnGuardar" class="btnSimple"> <i class="fa fa-save"></i> Guardar</button>
-			<button id="btnEliminar" class="btnSimple"> <i class="fa fa-trash"></i> Eliminar</button>
-		</div>
 		
+		
+	</div>
+
+	<div id="dialogoConfirmacion" style="display: none;">
+		<p>Esto eliminará de forma permantente al usuario seleccionado ¿realmente desea continuar?</p>
 	</div>
 
 {% endblock %}
@@ -103,6 +110,7 @@
 
 	$('#btnAgregar').on('click', limpiarFormulario);
 	$('#btnGuardar').on('click', guardarUsuario);
+	$('#btnEliminar').on('click', confirmarEliminarUsuario);
 
 	function limpiarFormulario(){
 		$('#div_lista div.item-seleccionado').removeClass('item-seleccionado');
@@ -110,6 +118,31 @@
 		$('#div_detalle input#txtNombre').focus();
 	}
 
+	function confirmarEliminarUsuario(){
+		$('div#dialogoConfirmacion').dialogo({
+            resizable: false,
+            heigth: 140,
+            modal: true,
+            title: 'Confirmar Operación',
+            buttons: {
+                'Sí': eliminarUsuario, 
+                Cancelar: function () {
+                    $(this).dialog('close');
+                }
+            }
+        });
+	}
+
+	function eliminarUsuario(){
+		$('#dialogoConfirmacion').dialog('close'); //cierra el dialogo que está abierto
+		var seleccionado = $('#div_lista .item-seleccionado');
+		var idUsuario = seleccionado.attr('data-id');
+		__cnn.ajax({
+			'url':'../achagua/eliminar',
+			'data': { IdUsuario:idUsuario },
+			'completado':cargarUsuarios
+		});
+	}
 
 	function guardarUsuario(){
 		var seleccionado = $('#div_lista .item-seleccionado');
@@ -118,6 +151,30 @@
 		}else{
 			registrarUsuario();
 		}
+	}
+
+	function registrarUsuario(){
+		var form = $('#formulario_usuario');
+		var clave1 = form.find('#txtClave').val();
+		var clave2 = form.find('#txtClave2').val();
+		if(clave1.trim().length === 0 || (clave1!==clave2)){
+			__dom.lanzarAlerta('Las claves no pueden estar vacías y deben coincidir', 'Error de validación');
+			return;
+		}
+
+
+		var usuario = {
+			nombre:form.find('#txtNombre').val(),
+			correo:form.find('#txtCorreo').val(),
+			clave:clave1
+		};
+		__cnn.ajax({
+			url:'../sesiones/ajax/peticion',
+			data:usuario,
+			completado:function(data){
+				cargarUsuarios();
+			}
+		})
 	}
 
 	function modificarUsuario(seleccionado){
@@ -136,14 +193,14 @@
 			completado:function(data){
 				cargarUsuarios();
 			}
-		})
+		});
 	}
 
 	/**
 	 * Función que sirve para consultar por medio de AJAX, todos los usuarios de la BD
 	 */
 	function cargarUsuarios(){
-		console.log('test');
+		limpiarFormulario();
 		__cnn.ajax({
 			url:'../achagua/consultar',
 			completado:onConsultarCompleto
