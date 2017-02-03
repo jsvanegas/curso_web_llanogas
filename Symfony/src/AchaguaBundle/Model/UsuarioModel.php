@@ -21,7 +21,7 @@ class UsuarioModel extends AuditoriaServices
      */
     public function buscarPorNombre($nombre){
         $parametros['nombre'] = $nombre;
-        $sql = "select * from usuario where lower (nombre) like :nombre ";
+        $sql = "select * from usuario where lower (nombre) like lower (:nombre) ";
         $listaUsuarios = $this->executeQuery($sql, $parametros);
         return $listaUsuarios;
     }

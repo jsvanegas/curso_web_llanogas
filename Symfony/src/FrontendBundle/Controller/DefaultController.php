@@ -23,4 +23,8 @@ class DefaultController extends Controller
     public function apptableAction(){
     	return $this->render('FrontendBundle:Default:apptable.html.twig');	
     }
+
+    public function mustacheAction(){
+        return $this->render('FrontendBundle:Default:mustache.html.twig');  
+    }
 }

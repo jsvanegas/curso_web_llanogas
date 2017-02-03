@@ -13,3 +13,7 @@ frontend_filltable:
 frontend_apptable:
     path:     /apptable
     defaults: { _controller: FrontendBundle:Default:apptable }
+
+frontend_mustache:
+    path:     /mustache
+    defaults: { _controller: FrontendBundle:Default:mustache }

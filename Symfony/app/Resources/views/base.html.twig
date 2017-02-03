@@ -12,6 +12,14 @@
         <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/override_apptable.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/font-awesome.min.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('bundles/frontend/css/theme/jquery.ui.all.css')}}" />
+
+        <style>
+            #menu a {
+                display: block;
+                margin-bottom:7px;
+                font-size: 12px;
+            }
+        </style>
         {% block stylesheets %}{% endblock %}
         
         <script type="text/javascript" src="{{ asset('bundles/frontend/js/lib/app.prototypes.js')}}"></script>
@@ -105,6 +113,7 @@
                     <a href="index">Página de Ejemplo con AJAX</a>
                     <a href="filltable">Ejemplo Filltable</a>    
                     <a href="apptable">Ejemplo Apptable</a>    
+                    <a href="mustache">Ejemplo Mustache</a>    
                 </div>
             </div>
 
