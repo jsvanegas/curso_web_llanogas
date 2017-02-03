@@ -49,7 +49,7 @@
 		__cnn.ajax({
 			url:'../achagua/consultar',
 			completado:function(data){
-				new Apptable('#tablaBasica', config, data.datos);
+				tbl = new Apptable('#tablaBasica', config, data.datos);
 			}
 		});
 		/******EJEMPLO DE TABLA BÁSICA******/

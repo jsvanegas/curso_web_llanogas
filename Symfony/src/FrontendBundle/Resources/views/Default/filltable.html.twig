@@ -34,8 +34,11 @@
 		/******EJEMPLO DE TABLA BÁSICA******/
 		var formatoTabla = {
 			thead:[
-				{id:'thNombre', text:'Nombre', refer:'nombre', type:'text'},
-				{id:'thCorreo', text:'Correo', refer:'correo', type:'text'}
+				{id:'thNombre', text:'Nombre', refer:'nombre', type:'input', valueField:'id_usuario'},
+				{id:'thCorreo', text:'Correo', refer:'correo', type:'text'},
+				{id:'thClave', text:'Contraseña', refer:'clave', type:'text'},
+				{id:'thAgregar', text:'Agregar', refer:'id_usuario', type:'button'},
+				{id:'thRemover', text:'Remover', refer:'id_usuario', type:'button'},
 			]
 		};
 
